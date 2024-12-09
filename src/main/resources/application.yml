@@ -1,0 +1,15 @@
+#spring.application.name=EasyRentals
+
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/easyrentals
+    username: postgres
+    password: jarule
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
