@@ -52,9 +52,4 @@ public class Owner {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Property> properties = new ArrayList<>();
 
-    public Owner(Long id, String firstName, String lastName, String email, List<Long> propertyId, List<Property> properties) {
-    }
-
-    public Owner(Long id, String firstName, String lastName, String email, List<Property> properties) {
-    }
 }

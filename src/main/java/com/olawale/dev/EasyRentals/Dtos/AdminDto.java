@@ -18,10 +18,9 @@ public class AdminDto {
     private Long id;
     private String username;
     private String email;
-    private String role = "ADMIN";
+    private Role role;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public AdminDto(Long id, Role role, @NotBlank(message = "Email is mandatory") @Email(message = "Email must be valid") String email, @NotBlank(message = "Username is mandatory") String username, LocalDateTime createdAt, LocalDateTime updatedAt) {
-    }
+
 }

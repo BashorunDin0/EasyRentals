@@ -5,8 +5,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Entity
 @Data
 public class Tenant {
@@ -37,6 +39,4 @@ public class Tenant {
     @Size(min = 8, message = "Password must be at least 8 characters long ")
     private String password;
 
-    public Tenant(Long id, String firstName, String lastName, String email, String phoneNumber, String address) {
-    }
 }

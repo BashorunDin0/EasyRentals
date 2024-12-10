@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Admin {
     @Id
@@ -27,12 +26,10 @@ public class Admin {
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Username is mandatory")
     private String username;
-
     @Column(nullable = false)
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Email must be valid")
     private String email;
-
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Password is mandatory")
     @Size(min = 8, message = "Password must be at least 8 characters long")
@@ -46,6 +43,4 @@ public class Admin {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public Admin(Long id, String role, String email, String username, LocalDateTime createdAt, LocalDateTime updatedAt) {
-    }
 }
