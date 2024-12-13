@@ -1,8 +1,6 @@
 package com.olawale.dev.EasyRentals.Dtos;
 
 import com.olawale.dev.EasyRentals.Entities.Role;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

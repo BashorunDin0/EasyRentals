@@ -10,6 +10,7 @@ public class TenantMapper {
                 .firstName(tenant.getFirstName())
                 .lastName(tenant.getLastName())
                 .email(tenant.getEmail())
+                .password(tenant.getPassword())
                 .phoneNumber(tenant.getPhoneNumber())
                 .address(tenant.getAddress())
                 .build();
@@ -21,6 +22,7 @@ public class TenantMapper {
                 .firstName(tenantDto.getFirstName())
                 .lastName(tenantDto.getLastName())
                 .email(tenantDto.getEmail())
+                .password(tenantDto.getPassword())
                 .phoneNumber(tenantDto.getPhoneNumber())
                 .address(tenantDto.getAddress())
                 .build();

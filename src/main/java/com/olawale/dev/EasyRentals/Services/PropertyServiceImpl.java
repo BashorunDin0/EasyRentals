@@ -1,9 +1,11 @@
 package com.olawale.dev.EasyRentals.Services;
 
 import com.olawale.dev.EasyRentals.Dtos.PropertyDto;
+import com.olawale.dev.EasyRentals.Entities.Owner;
 import com.olawale.dev.EasyRentals.Entities.Property;
 import com.olawale.dev.EasyRentals.Exceptions.ResourceNotFoundException;
 import com.olawale.dev.EasyRentals.Mappers.PropertyMapper;
+import com.olawale.dev.EasyRentals.Repositories.OwnerRepository;
 import com.olawale.dev.EasyRentals.Repositories.PropertyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,33 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PropertyServiceImpl implements PropertyService {
     private final PropertyRepository propertyRepository;
+    private final OwnerRepository ownerRepository;
 
-    @Override
-    public PropertyDto addProperty(PropertyDto propertyDto) {
-        Property property = PropertyMapper.mapToProperty(propertyDto);
-        Property savedProperty = propertyRepository.save(property);
-        return PropertyMapper.mapToPropertyDto(savedProperty);
-    }
+//    @Override
+//    public PropertyDto addProperty(PropertyDto propertyDto) {
+//        Property property = PropertyMapper.mapToProperty(propertyDto);
+//        Property savedProperty = propertyRepository.save(property);
+//        return PropertyMapper.mapToPropertyDto(savedProperty);
+//    }
+@Override
+public PropertyDto addProperty(PropertyDto propertyDto) {
+    // Retrieve the owner from the database using the ownerId
+    Owner owner = ownerRepository.findById(propertyDto.getOwnerId())
+            .orElseThrow(() -> new RuntimeException("Owner not found with ID: " + propertyDto.getOwnerId()));
+
+    // Map the PropertyDto to Property entity
+    Property property = PropertyMapper.mapToProperty(propertyDto);
+
+    // Set the owner in the Property entity
+    property.setOwner(owner);
+
+    // Save the Property entity
+    Property savedProperty = propertyRepository.save(property);
+
+    // Return the saved property as PropertyDto
+    return PropertyMapper.mapToPropertyDto(savedProperty);
+}
+
 
     @Override
     public PropertyDto getPropertyById(Long propertyId) {
@@ -46,7 +68,7 @@ public class PropertyServiceImpl implements PropertyService {
         property.setAddress(propertyDto.getAddress());
         property.setRent(propertyDto.getRent());
         property.setNumberOfRooms(propertyDto.getNumberOfRooms());
-        property.setGatedStatus(propertyDto.getGated());
+        property.setGated(propertyDto.getGated());
         property.setIsAvailable(propertyDto.getIsAvailable());
         property.setNewlyConstructed(propertyDto.getNewlyConstructed());
 
@@ -62,9 +84,9 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<PropertyDto> searchProperties(String location, Double maxPrice, Integer rooms) {
+    public List<PropertyDto> searchProperties(String address, Double rent, Integer numberOfRooms) {
         // Custom query for searching properties based on multiple criteria
-        List<Property> properties = propertyRepository.findByAddressContainingAndRentLessThanEqualAndNumberOfRooms(location, maxPrice, rooms);
+        List<Property> properties = propertyRepository.findByAddressContainingAndRentLessThanEqualAndNumberOfRooms(address, rent, numberOfRooms);
         return properties.stream()
                 .map(PropertyMapper::mapToPropertyDto)
                 .collect(Collectors.toList());

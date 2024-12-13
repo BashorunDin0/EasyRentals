@@ -31,8 +31,6 @@ public class OwnerController {
         }
     }
 
-
-
     @GetMapping("/getAllOwners")
     public ResponseEntity<List<OwnerDto>> getAllOwners() {
         List<OwnerDto> owners = ownerService.getAllOwner();
@@ -73,7 +71,7 @@ public class OwnerController {
 
 
     // List properties for a specific owner
-    @GetMapping("/{id}/properties")
+    @GetMapping("/properties/{id}")
     public ResponseEntity<List<Property>> listProperties(@PathVariable Long id) {
         List<Property> properties = ownerService.listProperties(id);
         return ResponseEntity.ok(properties);

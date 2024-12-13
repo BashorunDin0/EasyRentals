@@ -10,5 +10,5 @@ public interface PropertyService {
     List<PropertyDto> getAllProperties();
     PropertyDto updateProperty(Long propertyId, PropertyDto propertyDto);
     void deleteProperty(Long propertyId);
-    List<PropertyDto> searchProperties(String location, Double maxPrice, Integer rooms);
+    List<PropertyDto> searchProperties(String address, Double rent, Integer numberOfRooms);
 }

@@ -8,6 +8,7 @@ import com.olawale.dev.EasyRentals.Mappers.OwnerMapper;
 import com.olawale.dev.EasyRentals.Repositories.OwnerRepository;
 import com.olawale.dev.EasyRentals.Repositories.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public OwnerDto registerOwner(OwnerDto ownerDto) {
-        Owner owner = OwnerMapper.mapToOwner(ownerDto, new ArrayList<>());
+        Owner owner = OwnerMapper.mapToOwner(ownerDto);
         Owner savedOwner = ownerRepository.save(owner);
         return OwnerMapper.mapToOwnerDto(savedOwner);
     }

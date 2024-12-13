@@ -44,8 +44,8 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
-    public List<PropertyDto> searchProperties(String location, Double maxPrice, Integer rooms) {
-        List<Property> properties = propertyRepository.findByAddressAndRentAndNumberOfRooms(location, maxPrice, rooms);
+    public List<PropertyDto> searchProperties(String address, Double rent, Integer numberOfRooms) {
+        List<Property> properties = propertyRepository.findByAddressAndRentAndNumberOfRooms(address, rent, numberOfRooms);
         return properties.stream()
                 .map(PropertyMapper::mapToPropertyDto)
                 .collect(Collectors.toList());

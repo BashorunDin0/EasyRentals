@@ -6,8 +6,10 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -18,6 +20,8 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +42,8 @@ public class Property {
     private Double rent;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private GatedStatus gatedStatus = GatedStatus.GATED;
+//    @Column(nullable = false)
+    private GatedStatus gated = GatedStatus.GATED;
 
    @Enumerated(EnumType.STRING)
    @Column(nullable = false)
@@ -57,7 +61,7 @@ public class Property {
     private Boolean isAvailable = true;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
     private Owner owner;
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PropertyPicture> pictures = new ArrayList<>();

@@ -1,6 +1,5 @@
 package com.olawale.dev.EasyRentals.Dtos;
 
-import com.olawale.dev.EasyRentals.Entities.Property;
 import com.olawale.dev.EasyRentals.Entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +18,5 @@ public class OwnerDto {
     private String email;
     private String password;
     private Role role;
-    private List<Long> propertyId;
-
+    private List<PropertyDto> properties;
 }

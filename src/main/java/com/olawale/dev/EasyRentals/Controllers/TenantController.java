@@ -53,10 +53,10 @@ public class TenantController {
 
     @GetMapping("/properties/search")
     public ResponseEntity<List<PropertyDto>> searchProperties(
-            @RequestParam(required = false) String location,
-            @RequestParam(required = false) Double maxPrice,
-            @RequestParam(required = false) Integer rooms) {
-        List<PropertyDto> properties = tenantService.searchProperties(location, maxPrice, rooms);
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) Double rent,
+            @RequestParam(required = false) Integer numberOfRooms) {
+        List<PropertyDto> properties = tenantService.searchProperties(address, rent, numberOfRooms);
         return ResponseEntity.ok(properties);
     }
 

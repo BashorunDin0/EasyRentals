@@ -1,6 +1,5 @@
 package com.olawale.dev.EasyRentals.Controllers;
 
-
 import com.olawale.dev.EasyRentals.Dtos.PropertyDto;
 import com.olawale.dev.EasyRentals.Services.PropertyService;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,6 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    // Add a new property
     @PostMapping
     public ResponseEntity<String> addProperty(@RequestBody PropertyDto propertyDto) {
         PropertyDto addedProperty = propertyService.addProperty(propertyDto);
@@ -26,21 +24,18 @@ public class PropertyController {
         return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
 
-    // Get property by ID
     @GetMapping("/{id}")
     public ResponseEntity<PropertyDto> getPropertyById(@PathVariable Long id) {
         PropertyDto propertyDto = propertyService.getPropertyById(id);
         return ResponseEntity.ok(propertyDto);
     }
 
-    // Get all properties
     @GetMapping
     public ResponseEntity<List<PropertyDto>> getAllProperties() {
         List<PropertyDto> properties = propertyService.getAllProperties();
         return ResponseEntity.ok(properties);
     }
 
-    // Update property details
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProperty(@PathVariable Long id, @RequestBody PropertyDto propertyDto) {
         try {
@@ -53,7 +48,6 @@ public class PropertyController {
         }
     }
 
-    // Delete property
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProperty(@PathVariable Long id) {
         try {
@@ -66,13 +60,13 @@ public class PropertyController {
         }
     }
 
-    // Search properties based on filters
     @GetMapping("/search")
     public ResponseEntity<List<PropertyDto>> searchProperties(
-            @RequestParam(required = false) String location,
-            @RequestParam(required = false) Double maxPrice,
-            @RequestParam(required = false) Integer rooms) {
-        List<PropertyDto> properties = propertyService.searchProperties(location, maxPrice, rooms);
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) Double rent,
+            @RequestParam(required = false) Integer numberOfRooms) {
+        List<PropertyDto> properties = propertyService.searchProperties(address, rent, numberOfRooms);
         return ResponseEntity.ok(properties);
+
     }
 }

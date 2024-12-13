@@ -17,4 +17,5 @@ public class PropertyDto {
     private Boolean pop;
     private Boolean newlyConstructed;
     private Boolean isAvailable;
+    private Long ownerId;
 }

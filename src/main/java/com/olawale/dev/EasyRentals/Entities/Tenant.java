@@ -5,12 +5,16 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tenant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +37,7 @@ public class Tenant {
     @Email(message = "Email must be valid")
     private String email;
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Role role = Role.TENANT;
     @Column(nullable = false)
     @NotBlank(message = "Password is mandatory")

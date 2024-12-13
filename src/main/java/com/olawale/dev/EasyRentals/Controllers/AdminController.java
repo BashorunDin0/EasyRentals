@@ -41,8 +41,6 @@ public class AdminController {
         return ResponseEntity.noContent().build();
     }
 
-    // Owner Endpoints
-
     @GetMapping("/owners")
     public ResponseEntity<List<OwnerDto>> getAllOwners() {
         List<OwnerDto> owners = adminService.getAllOwners();
@@ -67,8 +65,6 @@ public class AdminController {
         return ResponseEntity.noContent().build();
     }
 
-    // Property Endpoints
-
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyDto>> getAllProperties() {
         List<PropertyDto> properties = adminService.getAllProperties();
@@ -81,7 +77,7 @@ public class AdminController {
         return ResponseEntity.ok(property);
     }
 
-    @PutMapping("/properties/{propertyId}")
+    @PutMapping("/{propertyId}/properties")
     public ResponseEntity<PropertyDto> updateProperty(@PathVariable Long propertyId, @RequestBody PropertyDto propertyDetails) {
         PropertyDto updatedProperty = adminService.updateProperty(propertyId, propertyDetails);
         return ResponseEntity.ok(updatedProperty);

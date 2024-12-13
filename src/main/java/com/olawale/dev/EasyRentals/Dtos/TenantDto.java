@@ -15,6 +15,7 @@ public class TenantDto {
     private String lastName;
     private String address;
     private Role role;
+    private String password;
     private String phoneNumber;
     private String email;
 

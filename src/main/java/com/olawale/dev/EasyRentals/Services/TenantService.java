@@ -9,6 +9,6 @@ public interface TenantService {
     TenantDto registerTenant(TenantDto tenantDto);
     TenantDto getTenantById(Long tenantId);
     List<PropertyDto> getAllProperties();
-    List<PropertyDto> searchProperties(String location, Double maxPrice, Integer rooms);
+    List<PropertyDto> searchProperties(String address, Double rent, Integer numberOfRooms);
     TenantDto updateTenant(Long tenantId, TenantDto tenantDto);
 }
