@@ -16,7 +16,7 @@ public class PropertyMapper {
                 .rent(property.getRent())
                 .numberOfRooms(property.getNumberOfRooms())
                 .gated(property.getGatedStatus())
-                .prepaid(property.getBillStatus())
+                .billStatus(property.getBillStatus())
                 .isAvailable(property.getIsAvailable())
                 .newlyConstructed(property.getNewlyConstructed())
                 .build();
@@ -33,6 +33,7 @@ public class PropertyMapper {
                 .rent(propertyDto.getRent())
                 .numberOfRooms(propertyDto.getNumberOfRooms())
                 .gatedStatus(propertyDto.getGated())
+                .billStatus(propertyDto.getBillStatus())
                 .isAvailable(propertyDto.getIsAvailable())
                 .newlyConstructed(propertyDto.getNewlyConstructed())
                 .build();

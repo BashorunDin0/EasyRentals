@@ -76,4 +76,3 @@ public class OwnerServiceImpl implements OwnerService {
         return OwnerMapper.mapToOwnerDto(updatedOwner);
     }
 }
-

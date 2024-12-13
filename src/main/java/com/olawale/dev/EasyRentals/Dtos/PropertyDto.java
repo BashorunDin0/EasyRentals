@@ -13,7 +13,7 @@ public class PropertyDto {
     private Integer numberOfRooms;
     private Double rent;
     private GatedStatus gated;
-    private ElectricityBillStatus prepaid;
+    private ElectricityBillStatus billStatus;
     private Boolean pop;
     private Boolean newlyConstructed;
     private Boolean isAvailable;

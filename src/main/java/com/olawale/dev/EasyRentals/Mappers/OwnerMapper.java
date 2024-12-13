@@ -42,7 +42,7 @@ public class OwnerMapper {
                 .lastName(ownerDto.getLastName())
                 .email(ownerDto.getEmail())
                 .role(ownerDto.getRole())
-                .password(passwordEncoder.encode(ownerDto.getPassword())) // Set a default or replace with an actual password field from OwnerDto
+                .password(ownerDto.getPassword()) // Set a default or replace with an actual password field from OwnerDto
                 .properties(properties != null ? properties : List.of()) // Ensure properties is non-null
                 .build();
     }
